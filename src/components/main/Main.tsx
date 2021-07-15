@@ -4,6 +4,10 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Header from "../layout/Header";
 import Footer from "../layout/Footer";
+import Menu from "../layout/Menu";
+import Home from "../pages/Home";
+import WorkEx from "../pages/wokex/WorkEx";
+import { Redirect, Route, Switch } from "react-router-dom";
 
 export interface IMainProps {}
 
@@ -12,12 +16,12 @@ export default function Main(props: IMainProps) {
     <Container>
       <Row>
         <Col xs={12} md={12} lg={12} xl={12}>
-          <Header/>
+          <Header />
         </Col>
       </Row>
       <Row>
         <Col xs={12} md={12} lg={12} xl={12} className="bg-light">
-          <h1>Menubar</h1>
+          <Menu />
         </Col>
       </Row>
 
@@ -29,7 +33,17 @@ export default function Main(props: IMainProps) {
       <Row>
         <Col className="bg-light">
           <div>
-            <h1>Content</h1>
+            <Switch>
+              <Route path="/" exact>
+                <Redirect to="/home" />
+              </Route>
+              <Route path="/home" exact>
+                <Home />
+              </Route>
+              <Route path="/workex" exact>
+                <WorkEx />
+              </Route>
+            </Switch>
           </div>
         </Col>
       </Row>
@@ -40,7 +54,7 @@ export default function Main(props: IMainProps) {
       </Row>
       <Row>
         <Col xs={12} md={12} lg={12} xl={12} className="bg-dark">
-          <Footer/>
+          <Footer />
         </Col>
       </Row>
     </Container>
