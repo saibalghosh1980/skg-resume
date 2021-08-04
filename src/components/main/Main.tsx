@@ -7,6 +7,7 @@ import Footer from "../layout/Footer";
 import Menu from "../layout/Menu";
 import Home from "../pages/Home";
 import WorkEx from "../pages/wokex/WorkEx";
+import Tech from "../pages/tech/Tech";
 import { Redirect, Route, Switch } from "react-router-dom";
 
 export interface IMainProps {}
@@ -42,6 +43,9 @@ export default function Main(props: IMainProps) {
               </Route>
               <Route path="/workex" exact>
                 <WorkEx />
+              </Route>
+              <Route path="/tech" exact>
+                <Tech />
               </Route>
             </Switch>
           </div>
