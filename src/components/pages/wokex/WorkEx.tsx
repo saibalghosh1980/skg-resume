@@ -9,11 +9,12 @@ import {
   Tooltip,
 } from "react-bootstrap";
 import { useQuery } from "react-query";
+import { ICountry } from "../../../model/Data";
+import CompanyDetails from "./component/CompanyDetails";
 
 export interface IWorkExpProps {}
 
 export default function WorkExp(props: IWorkExpProps) {
-  
   //=======================Fetch data=============================================================
   const { isLoading, error, isError, data, isSuccess } = useQuery<any, Error>(
     "SKG_WORKEX_SUMMARY",
@@ -40,10 +41,13 @@ export default function WorkExp(props: IWorkExpProps) {
       {data.data.workSummary.map(
         (
           item: {
-            name: React.ReactNode;
+            id: string,
+            name: string;
             startDate: string;
             endDate: string;
             imageURL: string;
+            designation: string;
+            countries : ICountry[];
           },
           index: number
         ) => (
@@ -66,7 +70,12 @@ export default function WorkExp(props: IWorkExpProps) {
               </OverlayTrigger>
             </Accordion.Toggle>
             <Accordion.Collapse eventKey={index.toString()}>
-              <Card.Body>Hello! I'm the body - {index}</Card.Body>
+              <Card.Body>
+                <CompanyDetails companyName={item.name} compnanyId={item.id} 
+                startDate={item.startDate} endDate={item.endDate}
+                designation={item.designation}
+                countries={item.countries}/>
+              </Card.Body>
             </Accordion.Collapse>
           </Card>
         )
