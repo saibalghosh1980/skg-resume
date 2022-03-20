@@ -55,6 +55,7 @@ export default function Cert(props: ICertProps) {
               as={Card.Header}
               eventKey={index.toString()}
               className="text-left"
+              style={{cursor:'pointer'}}
             >
               <OverlayTrigger
                 placement="right"

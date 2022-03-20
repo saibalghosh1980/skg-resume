@@ -57,6 +57,7 @@ export default function WorkExp(props: IWorkExpProps) {
               as={Card.Header}
               eventKey={index.toString()}
               className="text-left"
+              style={{cursor:'pointer'}}
             >
               <OverlayTrigger
                 placement="right"
@@ -67,7 +68,7 @@ export default function WorkExp(props: IWorkExpProps) {
                   </Tooltip>
                 }
               >
-                <img src={item.imageURL} height="25" />
+                <img src={item.imageURL} height="25" style={{cursor:'pointer'}}/>
               </OverlayTrigger>
             </Accordion.Toggle>
             <Accordion.Collapse eventKey={index.toString()}>
