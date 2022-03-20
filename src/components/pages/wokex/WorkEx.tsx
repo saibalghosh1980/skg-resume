@@ -9,7 +9,7 @@ import {
   Tooltip,
 } from "react-bootstrap";
 import { useQuery } from "react-query";
-import { ICountry } from "../../../model/Data";
+import { IClienCompany, ICountry } from "../../../model/Data";
 import CompanyDetails from "./component/CompanyDetails";
 
 export interface IWorkExpProps {}
@@ -48,6 +48,7 @@ export default function WorkExp(props: IWorkExpProps) {
             imageURL: string;
             designation: string;
             countries : ICountry[];
+            clients: IClienCompany[];
           },
           index: number
         ) => (
@@ -74,7 +75,8 @@ export default function WorkExp(props: IWorkExpProps) {
                 <CompanyDetails companyName={item.name} compnanyId={item.id} 
                 startDate={item.startDate} endDate={item.endDate}
                 designation={item.designation}
-                countries={item.countries}/>
+                countries={item.countries}
+                clients={item.clients}/>
               </Card.Body>
             </Accordion.Collapse>
           </Card>

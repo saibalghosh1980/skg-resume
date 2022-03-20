@@ -2,7 +2,7 @@ import * as React from "react";
 import { Alert, Col, Container, Row, Spinner } from "react-bootstrap";
 import axios from "axios";
 import { useQuery } from "react-query";
-import { ICountry } from "../../../../model/Data";
+import { IClienCompany, ICountry } from "../../../../model/Data";
 
 export interface ICompanyDetailsProps {
   companyName: string;
@@ -11,6 +11,7 @@ export interface ICompanyDetailsProps {
   endDate?: string;
   designation?: string;
   countries: ICountry[];
+  clients: IClienCompany[];
 }
 
 export default function CompanyDetails(props: ICompanyDetailsProps) {
@@ -88,6 +89,36 @@ export default function CompanyDetails(props: ICompanyDetailsProps) {
           }
           
           </Col>
+      </Row>
+      <Row>
+        <Col xs={2} className="text-left">
+          <div
+            style={{
+              whiteSpace: "pre-wrap",
+              overflowWrap: "break-word",
+              fontFamily: "fantasy",
+            }}
+          >
+            Clients (Selected) :
+          </div>
+        </Col>
+        <Col className="text-left">
+          <div
+            style={{
+              whiteSpace: "pre-wrap",
+              overflowWrap: "break-word",
+              fontFamily: "fantasy",
+            }}
+          >
+            {
+            props.clients.map((clients: IClienCompany) => (
+              <div>
+                {clients.name}
+              </div>
+            ))
+          }
+          </div>
+        </Col>
       </Row>
     </Container>
   );
