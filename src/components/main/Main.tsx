@@ -9,6 +9,7 @@ import Home from "../pages/Home";
 import WorkEx from "../pages/wokex/WorkEx";
 import Tech from "../pages/tech/Tech";
 import { Redirect, Route, Switch } from "react-router-dom";
+import Cert from "../pages/cert/Certifications";
 
 export interface IMainProps {}
 
@@ -46,6 +47,9 @@ export default function Main(props: IMainProps) {
               </Route>
               <Route path="/tech" exact>
                 <Tech />
+              </Route>
+              <Route path="/cert" exact>
+                <Cert />
               </Route>
             </Switch>
           </div>

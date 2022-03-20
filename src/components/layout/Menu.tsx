@@ -23,6 +23,11 @@ export default function Menu (props: IMenuProps) {
           <Nav.Link>Technologies</Nav.Link>
         </LinkContainer>
       </Nav.Item>
+      <Nav.Item>
+        <LinkContainer to="/cert">
+          <Nav.Link>Certifications</Nav.Link>
+        </LinkContainer>
+      </Nav.Item>
     </Nav>
   );
 }

@@ -12,3 +12,7 @@ export interface ITech {
     proficiency: string;
     yoe: string;
   }
+export interface ICert {
+  name: string,
+  id: string,
+}
