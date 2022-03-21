@@ -9,7 +9,7 @@ import {
   Tooltip,
 } from "react-bootstrap";
 import { useQuery } from "react-query";
-import { IClienCompany, ICountry } from "../../../model/Data";
+import { IClienCompany, ICountry, IProjects } from "../../../model/Data";
 import CompanyDetails from "./component/CompanyDetails";
 
 export interface IWorkExpProps {}
@@ -49,6 +49,7 @@ export default function WorkExp(props: IWorkExpProps) {
             designation: string;
             countries : ICountry[];
             clients: IClienCompany[];
+            projects: IProjects[];
           },
           index: number
         ) => (
@@ -77,7 +78,8 @@ export default function WorkExp(props: IWorkExpProps) {
                 startDate={item.startDate} endDate={item.endDate}
                 designation={item.designation}
                 countries={item.countries}
-                clients={item.clients}/>
+                clients={item.clients}
+                projects={item.projects}/>
               </Card.Body>
             </Accordion.Collapse>
           </Card>

@@ -6,6 +6,10 @@ export interface IClienCompany {
     name: string;
     code: string;
   }
+export interface IProjects {
+  id: string;
+  name: string;
+}
 export interface ITech {
     name: string;
     code: string;

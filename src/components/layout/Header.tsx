@@ -19,7 +19,9 @@ export default function Header(props: IHeaderProps) {
           <br />
           <br />
           <br />
-          <h4>Saibal's React Shop</h4>
+          <h4 style={{
+            fontFamily: "fantasy",
+          }}>Saibal K. Ghosh</h4>
           <br />
           <br />
           <br />
