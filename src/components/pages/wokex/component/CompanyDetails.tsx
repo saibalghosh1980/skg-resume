@@ -13,6 +13,7 @@ import { useQuery } from "react-query";
 import { IClienCompany, ICountry, IProjects } from "../../../../model/Data";
 
 import { BinocularsFill } from "react-bootstrap-icons";
+import ProjectDetails from "./ProjectDetails";
 
 export interface ICompanyDetailsProps {
   companyName: string;
@@ -32,8 +33,9 @@ export default function CompanyDetails(props: ICompanyDetailsProps) {
 
   const handleClose = () => setShow(false);
   const handleShow = (project:IProjects) => {
-    setShow(true);
     setSelectedProject(project);
+    setShow(true);
+    
   }
   //=======================Fetch data=============================================================
 
@@ -181,7 +183,7 @@ export default function CompanyDetails(props: ICompanyDetailsProps) {
         )}
       </Container>
 
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={handleClose} size="lg">
         <Modal.Header closeButton>
           <Modal.Title>
             <div
@@ -196,15 +198,7 @@ export default function CompanyDetails(props: ICompanyDetailsProps) {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div
-            style={{
-              whiteSpace: "pre-wrap",
-              overflowWrap: "break-word",
-              fontFamily: "fantasy",
-            }}
-          >
-            Woohoo, you're reading this text in a modal!
-          </div>
+          <ProjectDetails project={selectedProject}/>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>

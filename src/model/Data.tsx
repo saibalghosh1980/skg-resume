@@ -7,8 +7,13 @@ export interface IClienCompany {
     code: string;
   }
 export interface IProjects {
-  id: string;
+  id : string;
   name: string;
+}
+export interface IProjectDetails {
+  summary: string;
+  name: string;
+  contributions: {description:string;}[];
 }
 export interface ITech {
     name: string;
