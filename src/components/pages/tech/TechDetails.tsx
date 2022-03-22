@@ -33,6 +33,7 @@ export default function TechDetails(props: ITechDetailsProps) {
  }
   return (
     <div
+      id="id_tech_details"
       className="text-left"
       style={{
         whiteSpace: "pre-wrap",
@@ -47,7 +48,7 @@ export default function TechDetails(props: ITechDetailsProps) {
             <th>#</th>
             <th>Name</th>
             <th>Zen Level</th>
-            <th>Years of exp</th>
+            {/* <th>Years of exp</th> */}
           </tr>
         </thead>
         <tbody>
@@ -56,7 +57,7 @@ export default function TechDetails(props: ITechDetailsProps) {
               <td>{index+1}</td>
               <td>{item.name}</td>
               <td><Image src={determineImage(item.proficiency)}/></td>
-              <td>{item.yoe}</td>
+              {/* <td>{item.yoe}</td> */}
             </tr>
           ))}
         </tbody>

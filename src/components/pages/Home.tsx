@@ -10,7 +10,8 @@ import axios from "axios";
 import Alert from "react-bootstrap/Alert";
 import Spinner from "react-bootstrap/Spinner";
 import { Fade } from "react-bootstrap";
-import{CaretRightFill,CaretDownFill} from "react-bootstrap-icons";
+import { CaretRightFill, CaretDownFill,Facebook,Linkedin } from "react-bootstrap-icons";
+import NavbarCollapse from "react-bootstrap/esm/NavbarCollapse";
 
 export interface IHomeProps {}
 
@@ -20,6 +21,13 @@ export default function Home(props: IHomeProps) {
     showExpertise === "block"
       ? setShowExpertise("none")
       : setShowExpertise("block");
+  };
+  const [showQualification, setShowQualification] =
+    React.useState<string>("none");
+  const handleShowHideQualClick = () => {
+    showQualification === "block"
+      ? setShowQualification("none")
+      : setShowQualification("block");
   };
   //=======================Fetch data=============================================================
   const { isLoading, error, isError, data, isSuccess } = useQuery<any, Error>(
@@ -44,7 +52,15 @@ export default function Home(props: IHomeProps) {
     <Container fluid>
       <Row>
         <Col xs={3} className="text-left">
-          <Image src={skgprofilepic} height="240" width="180" rounded />
+          <Image src={skgprofilepic} height="240" width="180" rounded /><br/>
+          {data.data.socialMedia.map((item:any, index:number) => (
+            <span className="text-center">
+              <a href={item.url} target="_blank" rel="noopener noreferrer">
+                {item.id==='FB'?<Facebook size={24}/>:item.id==='LKD'?<Linkedin size={24}/>:<span></span>}
+              </a>&nbsp;&nbsp;
+            </span>
+            )
+          )}
         </Col>
         <Col className="text-left">
           <div
@@ -60,7 +76,11 @@ export default function Home(props: IHomeProps) {
               onClick={() => handleShowHideClick()}
               style={{ cursor: "pointer" }}
             >
-              {showExpertise === "none" ? <CaretRightFill color="royalblue"/> : <CaretDownFill color="royalblue"/>}
+              {showExpertise === "none" ? (
+                <CaretRightFill color="royalblue" />
+              ) : (
+                <CaretDownFill color="royalblue" />
+              )}
               <b>Professional Expertise:</b>
             </span>
 
@@ -76,6 +96,33 @@ export default function Home(props: IHomeProps) {
                     <li>{item.description}</li>
                   )
                 )}
+              </ul>
+            </div>
+            <br />
+            <span
+              onClick={() => handleShowHideQualClick()}
+              style={{ cursor: "pointer" }}
+            >
+              {showQualification === "none" ? (
+                <CaretRightFill color="royalblue" />
+              ) : (
+                <CaretDownFill color="royalblue" />
+              )}
+              <b>Education :</b>
+            </span>
+
+            <div
+              style={{
+                display: showQualification,
+                fontSize: ".90rem",
+              }}
+            >
+              <ul>
+                {data.data.education.map((item: any, index: number) => (
+                  <li>
+                    <b>{item.qualification}</b> from <b>{item.institute}</b> on the year {item.year}
+                  </li>
+                ))}
               </ul>
             </div>
           </div>

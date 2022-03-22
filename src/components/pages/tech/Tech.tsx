@@ -14,6 +14,7 @@ import { useQuery } from "react-query";
 import { ITech } from "../../../model/Data";
 import TechDetails from "./TechDetails";
 import { useState } from "react";
+import { Joystick } from "react-bootstrap-icons";
 
 export interface ITechProps {}
 
@@ -39,10 +40,10 @@ export default function Tech(props: ITechProps) {
   }
 
   //==============================================================================================
-  const handleClick = (event: ITech[],row:number) => {
+  const handleClick = (event: ITech[], row: number) => {
     setTech(event);
     setActiveRow(row);
-    console.log(tech)
+    console.log(tech);
   };
   if (isSuccess) {
     console.log(data.data);
@@ -75,12 +76,36 @@ export default function Tech(props: ITechProps) {
                 index: number
               ) => (
                 <tr>
-                  <td>{activeRow==index?<i> {index+1}</i>:index+1}</td>
-                  <td>{activeRow==index?<i> <b>{item.catagory}</b></i>:item.catagory}</td>
                   <td>
-                    <Button size="sm" variant="primary" onClick={()=>handleClick(item.technologies,index)}>
-                      Details..
-                    </Button>
+                    {activeRow == index ? (
+                      <i>
+                        {index + 1}&nbsp;&nbsp;
+                        <Joystick color="royalblue" />
+                      </i>
+                    ) : (
+                      index + 1
+                    )}
+                  </td>
+                  <td>
+                    {activeRow == index ? (
+                      <i>
+                        {" "}
+                        <b>{item.catagory}</b>
+                      </i>
+                    ) : (
+                      item.catagory
+                    )}
+                  </td>
+                  <td>
+                    <a href="#id_tech_details">
+                      <Button
+                        size="sm"
+                        variant="primary"
+                        onClick={() => handleClick(item.technologies, index)}
+                      >
+                        Details..
+                      </Button>
+                    </a>
                   </td>
                 </tr>
               )
