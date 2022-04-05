@@ -156,7 +156,7 @@ export default function Home(props: IHomeProps) {
               onClick={() => handleShowHideGeoClick()}
               style={{ cursor: "pointer" }}
             >
-              {showQualification === "none" ? (
+              {showGeo === "none" ? (
                 <CaretRightFill color="royalblue" />
               ) : (
                 <CaretDownFill color="royalblue" />
