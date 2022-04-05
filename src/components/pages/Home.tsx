@@ -9,9 +9,15 @@ import { useQuery } from "react-query";
 import axios from "axios";
 import Alert from "react-bootstrap/Alert";
 import Spinner from "react-bootstrap/Spinner";
-import { Fade } from "react-bootstrap";
-import { CaretRightFill, CaretDownFill,Facebook,Linkedin } from "react-bootstrap-icons";
+import { Dropdown, DropdownButton, Fade } from "react-bootstrap";
+import {
+  CaretRightFill,
+  CaretDownFill,
+  Facebook,
+  Linkedin,
+} from "react-bootstrap-icons";
 import NavbarCollapse from "react-bootstrap/esm/NavbarCollapse";
+import GeogRaphy from "../geography/Geography";
 
 export interface IHomeProps {}
 
@@ -29,6 +35,17 @@ export default function Home(props: IHomeProps) {
       ? setShowQualification("none")
       : setShowQualification("block");
   };
+
+  const [showGeo, setShowGeo] = React.useState<string>("none");
+  const handleShowHideGeoClick = () => {
+    showGeo === "block" ? setShowGeo("none") : setShowGeo("block");
+  };
+
+  const [region, setRegion] = React.useState<string>("asia");
+  const handleRegionChange = (event: any) => {
+    console.log(event);
+  }
+  
   //=======================Fetch data=============================================================
   const { isLoading, error, isError, data, isSuccess } = useQuery<any, Error>(
     "SKG_EXEC_SUMMARY",
@@ -52,15 +69,22 @@ export default function Home(props: IHomeProps) {
     <Container fluid>
       <Row>
         <Col xs={3} className="text-left">
-          <Image src={skgprofilepic} height="240" width="180" rounded /><br/>
-          {data.data.socialMedia.map((item:any, index:number) => (
+          <Image src={skgprofilepic} height="240" width="180" rounded />
+          <br />
+          {data.data.socialMedia.map((item: any, index: number) => (
             <span className="text-center">
               <a href={item.url} target="_blank" rel="noopener noreferrer">
-                {item.id==='FB'?<Facebook size={24}/>:item.id==='LKD'?<Linkedin size={24}/>:<span></span>}
-              </a>&nbsp;&nbsp;
+                {item.id === "FB" ? (
+                  <Facebook size={24} />
+                ) : item.id === "LKD" ? (
+                  <Linkedin size={24} />
+                ) : (
+                  <span></span>
+                )}
+              </a>
+              &nbsp;&nbsp;
             </span>
-            )
-          )}
+          ))}
         </Col>
         <Col className="text-left">
           <div
@@ -120,10 +144,41 @@ export default function Home(props: IHomeProps) {
               <ul>
                 {data.data.education.map((item: any, index: number) => (
                   <li>
-                    <b>{item.qualification}</b> from <b>{item.institute}</b> on the year {item.year}
+                    <b>{item.qualification}</b> from <b>{item.institute}</b> on
+                    the year {item.year}
                   </li>
                 ))}
               </ul>
+            </div>
+            <br />
+
+            <span
+              onClick={() => handleShowHideGeoClick()}
+              style={{ cursor: "pointer" }}
+            >
+              {showQualification === "none" ? (
+                <CaretRightFill color="royalblue" />
+              ) : (
+                <CaretDownFill color="royalblue" />
+              )}
+              <b>Geographies worked in :</b>
+            </span>
+            <div
+              style={{
+                display: showGeo,
+                fontSize: ".90rem",
+              }}
+            >
+              <DropdownButton
+                id="dropdown-basic-button"
+                title="Region" size="sm"
+              >
+                <Dropdown.Item eventKey='asia' onSelect={() => setRegion('asia')}>Asia</Dropdown.Item>
+                <Dropdown.Item eventKey='eu' onSelect={() => setRegion('eu')}>EU</Dropdown.Item>
+                <Dropdown.Item eventKey='us' onSelect={() => setRegion('us')}>USA</Dropdown.Item>
+                <Dropdown.Item eventKey='oc' onSelect={() => setRegion('oc')}>Oceania</Dropdown.Item>
+              </DropdownButton>
+              <GeogRaphy geo={region} />
             </div>
           </div>
         </Col>
